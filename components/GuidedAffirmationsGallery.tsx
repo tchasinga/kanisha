@@ -1,7 +1,7 @@
 import { Image, View, Text, FlatList, Pressable } from "react-native";
-import { Link } from "@react-navigation/native";
-import { GalleryPreviewData } from "@/constants/models/AffirmationColomer";
 import images from "@/constants/affirmationforimages";
+import { GalleryPreviewData} from "@/constants/models/AffirmationColomer";
+import { Link } from "expo-router";
 
 interface GuidedAffirmationsGalleryProps {
     title: string;
@@ -18,13 +18,13 @@ const GuidedAffirmationsGallery = ({
                 <Text className="text-white font-bold text-xl">{title}</Text>
             </View>
             <View className="space-y-2">
-                <FlatList 
-                    data={products} 
-                    showsHorizontalScrollIndicator={false} 
+                <FlatList
+                    data={products}
+                    showsHorizontalScrollIndicator={false}
                     keyExtractor={(item) => item.id.toString()}
-                    renderItem={({ item }) => (
-                        <Link to={`/affirmation/${item.id.toString()}`} >
-                           <Pressable>
+                    renderItem={({ item, index }) => (
+                        <Link href={`/affirmation/${item.id}`} asChild>
+                            <Pressable>
                                 <View className="h-36 w-32 rounded-md mr-4">
                                     <Image
                                         source={item.image}
@@ -35,8 +35,8 @@ const GuidedAffirmationsGallery = ({
                                 </View>
                             </Pressable>
                         </Link>
-                    )} 
-                    horizontal  
+                    )}
+                    horizontal
                 />
             </View>
         </View>

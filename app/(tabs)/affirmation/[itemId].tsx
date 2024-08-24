@@ -1,35 +1,55 @@
-import { View, Text } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { useLocalSearchParams } from 'expo-router'
-import { GalleryPreviewData } from '@/constants/models/AffirmationColomer'
-import AFFIRMATION_GALLERY from '@/constants/affirmationgallery'
+import { View, Text, ImageBackground, Pressable, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { router, useLocalSearchParams } from 'expo-router';
+import { GalleryPreviewData } from '@/constants/models/AffirmationColomer';
+import AFFIRMATION_GALLERY from '@/constants/affirmationgallery';
+import AppGradient from '@/components/Appgradient'; // Ensure the correct import
+import { AntDesign } from "@expo/vector-icons";
 
-const AffirmationIdindex = () => {
-   const {itemId} = useLocalSearchParams()
-   const [affirmation, setAffirmation] = useState<GalleryPreviewData>()
+const AffirmationIdIndex = () => {
+    const { itemId } = useLocalSearchParams();
+    const [affirmation, setAffirmation] = useState<GalleryPreviewData>();
 
+    useEffect(() => {
+        for (let idx = 0; idx < AFFIRMATION_GALLERY.length; idx++) {
+            const affirmationData = AFFIRMATION_GALLERY[idx].data;
 
-   useEffect(() => {
-    for(let idx = 0; idx < AFFIRMATION_GALLERY.length; idx++) {
-        const affirmationData =  AFFIRMATION_GALLERY[idx].data;
+            const affirmationToStart = affirmationData.find(
+                (a) => a.id === Number(itemId)
+            );
 
-        const affirmationToStart = affirmationData.find(
-            (a) => a.id === Number(itemId)
-        )
-
-        if(affirmationToStart){
-            setAffirmation(affirmationToStart)
-            return;
+            if (affirmationToStart) {
+                setAffirmation(affirmationToStart);
+                return;
+            }
         }
-    }
-   })
+    }, [itemId]);
 
+    return (
+        <View className="flex-1">
+            <ImageBackground
+                source={affirmation?.image}
+                resizeMode="cover"
+                className="flex-1"
+            >
+                
+                <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', padding: 20 }}>
+                    <Text className="text-white text-2xl font-bold mb-4">
+                        {affirmation?.text}
+                    </Text>
+                    <Text className="text-white text-lg">
+                        {affirmation?.text}
+                    </Text>
+                </ScrollView>
+                <Pressable
+                    onPress={() => router.back()}
+                    className="absolute top-12 left-6 p-2 bg-black bg-opacity-50 rounded-full"
+                >
+                    <AntDesign name="arrowleft" size={24} color="white" />
+                </Pressable>
+            </ImageBackground>
+        </View>
+    );
+};
 
-  return (
-    <View>
-      <Text>AffirmationIdindex</Text>
-    </View>
-  )
-}
-
-export default AffirmationIdindex
+export default AffirmationIdIndex;
