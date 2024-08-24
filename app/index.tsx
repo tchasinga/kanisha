@@ -9,7 +9,9 @@ export default function HomeScreen() {
     <SafeAreaView className="flex-1">
       <ImageBackground source={BImage} resizeMode="cover" className="flex-1">
         <LinearGradient className='flex-1' colors={["rgba(0,0,0, 0.4)", "rgba(0,0,0, 0.8)"]}>
-             <Text className="text-black text-lg">The best is coming now</Text>
+            <View>
+            <Text className="text-white text-center font-bold text-3xl">Zua tango</Text>
+            </View>
         </LinearGradient>      
       </ImageBackground>
       <StatusBar style="auto" />
