@@ -21,7 +21,7 @@ export default function HomeScreen() {
             </View>
 
             <View className='my-12'>
-              <CustomButtom onPress={() => router.navigate("/test")}  title='Get stared now'/>
+              <CustomButtom onPress={() => router.navigate("/(tabs)/naturemeditate")}  title='Get stared now'/>
             </View>
             <StatusBar style="dark" />
           </SafeAreaView>
