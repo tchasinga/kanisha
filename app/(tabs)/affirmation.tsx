@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 const Affirmation = () => {
   return (
     <SafeAreaView>
-      <Text>This is the main Affirmation</Text>
+         <Text>This is the main Affirmation</Text>
     </SafeAreaView>
   )
 }
