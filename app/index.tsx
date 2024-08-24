@@ -16,7 +16,7 @@ export default function HomeScreen() {
               <Text className='text-white text-center text-sm'>Relax & take note, more you read more you learn</Text>
             </View>
 
-            <View className='my-2'>
+            <View className='my-12'>
               <CustomButtom onPress={() => console.log("tap this game")}  title='Get stared now'/>
             </View>
             <StatusBar style="dark" />
