@@ -7,6 +7,8 @@ import CustomButtom from '@/components/CustomButtom';
 import { useRouter } from 'expo-router';
 import AppGradiant from '@/components/Appgradient';
 
+
+
 export default function HomeScreen() {
 
   const router = useRouter();
@@ -14,7 +16,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaView className="flex-1">
       <ImageBackground source={BImage} resizeMode="cover" className="flex-1">
-        <AppGradiant  className='flex-1' colors={["rgba(0,0,0, 0.4)", "rgba(0,0,0, 0.8)"]}>
+        <AppGradiant colors={["rgba(0,0,0, 0.4)", "rgba(0,0,0, 0.8)"]}>
           <SafeAreaView className='flex-1 justify-between px-1'>
             <View>
               <Text className="text-white text-center font-bold text-3xl">Zua tango</Text>
