@@ -4,8 +4,12 @@ import { StatusBar } from 'expo-status-bar';
 import BImage from "@/assets/meditation-images/beach.webp";
 import { LinearGradient } from 'expo-linear-gradient';
 import CustomButtom from '@/components/CustomButtom';
+import { useRouter } from 'expo-router';
 
 export default function HomeScreen() {
+
+  const router = useRouter();
+
   return (
     <SafeAreaView className="flex-1">
       <ImageBackground source={BImage} resizeMode="cover" className="flex-1">
@@ -17,7 +21,7 @@ export default function HomeScreen() {
             </View>
 
             <View className='my-12'>
-              <CustomButtom onPress={() => console.log("tap this game")}  title='Get stared now'/>
+              <CustomButtom onPress={() => router.navigate("/test")}  title='Get stared now'/>
             </View>
             <StatusBar style="dark" />
           </SafeAreaView>
