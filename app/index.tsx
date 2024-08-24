@@ -2,12 +2,15 @@ import { View, Text, ImageBackground } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import BImage from "@/assets/meditation-images/beach.webp";
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function HomeScreen() {
   return (
     <SafeAreaView className="flex-1">
-      <ImageBackground source={BImage} resizeMode="cover" className="flex-1 justify-center items-center">
-        <Text className="text-black text-lg">The best is coming now</Text>
+      <ImageBackground source={BImage} resizeMode="cover" className="flex-1">
+        <LinearGradient className='flex-1' colors={["rgba(0,0,0, 0.4)", "rgba(0,0,0, 0.8)"]}>
+             <Text className="text-black text-lg">The best is coming now</Text>
+        </LinearGradient>      
       </ImageBackground>
       <StatusBar style="auto" />
     </SafeAreaView>
