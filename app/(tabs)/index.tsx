@@ -8,7 +8,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaView>
     <View className='text-lg'>
-      <Text>The best is comming now</Text>
+      <Text className='text-white'>The best is comming now</Text>
     </View>
     <StatusBar style='auto'/>
     </SafeAreaView>
