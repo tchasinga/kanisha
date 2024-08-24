@@ -17,14 +17,14 @@ const RoomerDesignerLayoutlayout = () => {
             <Tabs.Screen name="naturemeditate" options={{
                 tabBarLabel: "Meditate",
                 tabBarIcon: ({ color }) => (
-                    <FontAwesome5 name="book-reader" size={24} color="black" />
+                    <FontAwesome5 name="book-reader" size={24} color={color} />
                 )
             }} />
 
             <Tabs.Screen name="affirmation" options={{
                 tabBarLabel: "Affirmation",
                 tabBarIcon: ({ color }) => (
-                    <MaterialIcons name="gpp-good" size={24} color="black" />
+                    <MaterialIcons name="gpp-good" size={24} color={color} />
                 )
             }} />
 
