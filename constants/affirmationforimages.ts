@@ -8,7 +8,7 @@ import englishCountrysideTwo from "@/assets/affirmation-images/english-countrysi
 import englishCountrysideThree from "@/assets/affirmation-images/english-countryside-3.webp";
 import englishCountrysideFour from "@/assets/affirmation-images/english-countryside-4.webp";
 
-import mountainMeditateOne from "@/assets/affirmation-images/mountain-medi  tate-1.webp";
+import mountainMeditateOne from "@/assets/affirmation-images/mountain-meditate-1.webp";
 import mountainMeditateTwo from "@/assets/affirmation-images/mountain-meditate-2.webp";
 import mountainMeditateThree from "@/assets/affirmation-images/mountain-meditate-3.webp";
 import mountainMeditateFour from "@/assets/affirmation-images/mountain-meditate-4.webp";
@@ -33,7 +33,9 @@ import tuscannyTwo from "@/assets/affirmation-images/Tuscanny-2.webp";
 import tuscannyThree from "@/assets/affirmation-images/Tuscanny-3.webp";
 import tuscannyFour from "@/assets/affirmation-images/Tuscanny-4.webp";
 
-export default {
+
+
+export  default {
     californiaBackyardOne,
     californiaBackyardTwo,
     californiaBackyardThree,
