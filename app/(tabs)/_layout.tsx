@@ -5,7 +5,6 @@ import { Tabs } from 'expo-router'
 import Color from '@/constants/Color'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { Foundation } from '@expo/vector-icons'
 
 const RoomerDesignerLayoutlayout = () => {
     return (
@@ -29,12 +28,7 @@ const RoomerDesignerLayoutlayout = () => {
                 )
             }} />
 
-            <Tabs.Screen name="meditate" options={{
-                tabBarLabel: "meditate",
-                tabBarIcon: ({ color }) => (
-                    <Foundation name="target-two" size={24} color={color} />
-                )
-            }} />
+            
 
         </Tabs>
     )
