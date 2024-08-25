@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
 import { GalleryPreviewData } from '@/constants/models/AffirmationColomer';
 import AFFIRMATION_GALLERY from '@/constants/affirmationgallery';
-import AppGradient from '@/components/Appgradient'; // Ensure the correct import
 import { AntDesign } from "@expo/vector-icons";
 
 const AffirmationIdIndex = () => {
