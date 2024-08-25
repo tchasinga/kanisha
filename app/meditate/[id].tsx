@@ -3,10 +3,13 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import React from 'react'
 import meditationImage from '@/constants/fileformeditation'
 import AppGradiant from '@/components/Appgradient'
-import { router } from 'expo-router'
+import { router, useLocalSearchParams } from 'expo-router'
 import { AntDesign } from '@expo/vector-icons'
 
 const Meditate = () => {
+
+  const { itemId } = useLocalSearchParams();
+
   return (
     <SafeAreaView className='flex-1'>
         <ImageBackground source={meditationImage[0]} className='flex-1' resizeMode='cover'> 
