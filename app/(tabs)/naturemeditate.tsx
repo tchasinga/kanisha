@@ -6,6 +6,7 @@ import myGradient from '@/hooks/myGradient'
 import { StatusBar } from 'expo-status-bar'
 import { MEDITATION_DATA } from '../../constants/meditationData';
 import MEDITATIONimage from '@/constants/fileformeditation'
+import { router } from 'expo-router'
 
 
 const Naturemeditate = () => {
@@ -25,7 +26,7 @@ const Naturemeditate = () => {
                     showsVerticalScrollIndicator={false}
                     renderItem={({item}) => (
                         <Pressable
-                        onPress={() => console.log('item is there now')}
+                        onPress={() => router.push(`/meditate/${item.id}`)}
                         className='h-48 my-3 rounded-md overflow-hidden'
                         >
                            <ImageBackground source={MEDITATIONimage[item.id -1]}
