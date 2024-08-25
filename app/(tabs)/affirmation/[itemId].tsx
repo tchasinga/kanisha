@@ -27,27 +27,26 @@ const AffirmationIdIndex = () => {
 
     return (
         <View className="flex-1">
-            <ImageBackground
-                source={affirmation?.image}
-                resizeMode="cover"
-                className="flex-1"
-            >
-                
-                <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', padding: 20 }}>
-                    <Text className="text-white text-2xl font-bold mb-4">
-                        {affirmation?.text}
-                    </Text>
-                    <Text className="text-white text-lg">
-                        {affirmation?.text}
-                    </Text>
-                </ScrollView>
-                <Pressable
-                    onPress={() => router.back()}
-                    className="absolute top-12 left-6 p-2 bg-black bg-opacity-50 rounded-full"
+            <AppGradient colors={["rgba(0,0,0, 0.4)", "rgba(0,0,0, 0.8)"]}>
+                <ImageBackground
+                    source={affirmation?.image}
+                    resizeMode="cover"
+                    className="flex-1"
                 >
-                    <AntDesign name="arrowleft" size={24} color="white" />
-                </Pressable>
-            </ImageBackground>
+
+                    <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', padding: 20 }}>
+                        <Text className="text-white text-lg font-bold">
+                            {affirmation?.text}
+                        </Text>
+                    </ScrollView>
+                    <Pressable
+                        onPress={() => router.back()}
+                        className="absolute top-12 left-6 p-2 bg-black bg-opacity-50 rounded-full"
+                    >
+                        <AntDesign name="arrowleft" size={24} color="white" />
+                    </Pressable>
+                </ImageBackground>
+            </AppGradient>
         </View>
     );
 };
