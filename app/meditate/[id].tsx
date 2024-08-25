@@ -12,7 +12,7 @@ const Meditate = () => {
 
   return (
     <SafeAreaView className='flex-1'>
-        <ImageBackground source={meditationImage[0]} className='flex-1' resizeMode='cover'> 
+        <ImageBackground source={meditationImage[Number(itemId) - 1]} className='flex-1' resizeMode='cover'> 
             <AppGradiant colors={["rgba(0,0,0, 0.4)", "rgba(0,0,0, 0.8)"]}>
             <Text className='text-white text-2xl text-center'>Meditate</Text>
             <Pressable onPress={() => router.back()} className='absolute top-16 left-6 z-10 bg-white rounded-full p-2 shadow-md'>
