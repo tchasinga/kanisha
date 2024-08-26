@@ -15,6 +15,7 @@ const Meditate = () => {
   const [secondRemaining, setSecondRemaining] = React.useState(10);
   const [isPlaying, setIsPlaying] = React.useState(false); 
   const [audioSound, setAudioSound] = React.useState<Audio.Sound>();
+  const [isPlayingSound, setIsPlayingSound] = React.useState(false);
   
   useEffect(() =>{
     let timerId : NodeJS.Timeout;
@@ -38,6 +39,7 @@ const Meditate = () => {
   const toggleMeditationSessionStatus = async () => {
     if(secondRemaining === 0) setSecondRemaining(10);
     setIsPlaying(!isPlaying);
+    await togglePlySound();
   }
 
    
@@ -45,10 +47,12 @@ const Meditate = () => {
        const sound = audioSound ? await initializeMethode() : null;
        const status = await sound?.getStatusAsync(); 
 
-       if(status?.isLoaded){
+       if(status?.isLoaded && !isPlayingSound){ 
         await sound?.playAsync();
+        setIsPlayingSound(true);
        }else{
         await sound?.pauseAsync();
+        setIsPlayingSound(false);
        }
   }
 
@@ -84,7 +88,7 @@ const Meditate = () => {
              </View>
 
              <View className='mb-4'>
-                 <CustomButtom  title='Start meditation'  onPress={() => setIsPlaying(true)} />
+                 <CustomButtom  title='Start meditation'  onPress={toggleMeditationSessionStatus} />
              </View>
             </AppGradiant>
         </ImageBackground>
