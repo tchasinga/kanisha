@@ -5,6 +5,7 @@ import AppGradient from '@/components/Appgradient';
 import { router } from 'expo-router';
 import { AntDesign } from '@expo/vector-icons';
 import CustomButtom from '@/components/CustomButtom';
+import { TimerContext } from '@/context/Timercontext';
 
 const Adjustdurationmeditationduration = () => {
 
