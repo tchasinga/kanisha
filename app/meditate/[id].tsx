@@ -41,6 +41,27 @@ const Meditate = () => {
   }
 
    
+  const togglePlySound = async () => {
+       const sound = audioSound ? await initializeMethode() : null;
+       const status = await sound?.getStatusAsync(); 
+
+       if(status?.isLoaded){
+        await sound?.playAsync();
+       }else{
+        await sound?.pauseAsync();
+       }
+  }
+
+   const initializeMethode = async () => {
+    const audionFileNamer = MEDITATION_DATA[Number(id) - 1].audio;
+
+    const {sound} = await Audio.Sound.createAsync(
+      AUDIO_FILES[audionFileNamer]
+    );
+
+    setAudioSound(sound);
+    return sound;
+   }
 
   const formatedTimeMinutes  = String(
     Math.floor(secondRemaining / 60)
