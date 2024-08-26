@@ -22,7 +22,6 @@ export default function RootLayout() {
   if (!loaded) {
     return null;
   }
-
   return (
     <Stack>
       <Stack.Screen name='(tabs)' options={{headerShown: false}}/>
