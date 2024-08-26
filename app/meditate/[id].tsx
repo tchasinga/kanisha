@@ -95,8 +95,9 @@ const Meditate = () => {
             </View>
           </View>
 
-          <View className="mb-4">
+          <View className="mb-4 gap-4">
             <CustomButtom title={isPlaying ? 'Pause Meditation' : 'Start Meditation'} onPress={toggleMeditationSessionStatus} />
+            <CustomButtom title={'fix timer'} containerStyles='my-4' onPress={() => alert('fix timer')} />
           </View>
         </AppGradiant>
       </ImageBackground>
