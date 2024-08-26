@@ -7,6 +7,7 @@ import { router, useLocalSearchParams } from 'expo-router'
 import { AntDesign } from '@expo/vector-icons'
 import CustomButtom from '@/components/CustomButtom'
 import { Audio } from 'expo-av';
+import { MEDITATION_DATA, AUDIO_FILES } from '@/constants/meditationData'
 
 const Meditate = () => {
 
@@ -34,10 +35,17 @@ const Meditate = () => {
     }
   },[secondRemaining, isPlaying]);
 
+  const toggleMeditationSessionStatus = async () => {
+    if(secondRemaining === 0) setSecondRemaining(10);
+    setIsPlaying(!isPlaying);
+  }
+
+   
+
   const formatedTimeMinutes  = String(
     Math.floor(secondRemaining / 60)
   ).padStart(2, "0");
-  const formatedTimeSeconds = String(secondRemaining % 60).padStart(2, "0");
+  const formatedTimeSeconds = String(secondRemaining % 60).padStart(2, "0"); 
 
   return (
     <SafeAreaView className='flex-1'>
