@@ -1,6 +1,6 @@
 import { View, Text, ImageBackground, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import meditationImage from '@/constants/fileformeditation';
 import AppGradiant from '@/components/Appgradient';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -8,10 +8,12 @@ import { AntDesign } from '@expo/vector-icons';
 import CustomButtom from '@/components/CustomButtom';
 import { Audio } from 'expo-av';
 import { MEDITATION_DATA, AUDIO_FILES } from '@/constants/meditationData';
+import { TimerContext } from '@/context/Timercontext';
 
 const Meditate = () => {
   const { id } = useLocalSearchParams();
-  const [secondRemaining, setSecondRemaining] = React.useState(10);
+  const {duration:secondRemaining, setDuration} = useContext(TimerContext) 
+  // const [secondRemaining, setSecondRemaining] = React.useState(10);
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [audioSound, setAudioSound] = React.useState<Audio.Sound | null>(null);
   const [isPlayingSound, setIsPlayingSound] = React.useState(false);
@@ -26,7 +28,7 @@ const Meditate = () => {
 
     if (isPlaying) {
       timerId = setTimeout(() => {
-        setSecondRemaining(secondRemaining - 1);
+        setDuration(secondRemaining - 1);
       }, 1000);
     }
 
@@ -42,7 +44,7 @@ const Meditate = () => {
   }, [audioSound]);
 
   const toggleMeditationSessionStatus = async () => {
-    if (secondRemaining === 0) setSecondRemaining(10);
+    if (secondRemaining === 0) setDuration(10);
     setIsPlaying(!isPlaying);
     await togglePlaySound();
   };

@@ -24,13 +24,13 @@ const Adjustdurationmeditationduration = () => {
             >
                 <Pressable
                     onPress={() => router.back()}
-                    className="absolute top-8 left-6 z-10"
+                    className="absolute top-8 left-6 z-10 bg-white p-4 rounded-full"
                 >
-                    <AntDesign name="leftcircleo" size={50} color="white" />
+                    <AntDesign name="back" size={24} color="black" />
                 </Pressable>
                 <View className="justify-center h-4/5">
                     <View>
-                        <Text className="text-center font-bold text-3xl text-white mb-8">
+                        <Text className="text-center font-bold text-3xl text-white pt-[30%] pb-[10%]">
                             Adjust your meditation duration
                         </Text>
                     </View>
