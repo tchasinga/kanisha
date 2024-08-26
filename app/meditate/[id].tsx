@@ -72,6 +72,11 @@ const Meditate = () => {
     return sound;
   };
 
+  const handlerAdjustDuration = () => {
+    if(isPlaying) toggleMeditationSessionStatus()
+      router.push("/(modal)/adjustdurationmeditationduration")
+  }
+
   const formattedTimeMinutes = String(Math.floor(secondRemaining / 60)).padStart(2, '0');
   const formattedTimeSeconds = String(secondRemaining % 60).padStart(2, '0');
 
@@ -97,7 +102,7 @@ const Meditate = () => {
 
           <View className="mb-4 gap-4">
             <CustomButtom title={isPlaying ? 'Pause Meditation' : 'Start Meditation'} onPress={toggleMeditationSessionStatus} />
-            <CustomButtom title={'fix timer'} containerStyles='my-4' onPress={() => alert('fix timer')} />
+            <CustomButtom title={'fix timer'} containerStyles='my-4' onPress={handlerAdjustDuration} />
           </View>
         </AppGradiant>
       </ImageBackground>
