@@ -23,7 +23,7 @@ const Meditate = () => {
 
              <View className='flex-1 justify-center'>
               <View className='mx-auto bg-neutral-200 rounded-full justify-center items-center w-44 h-44 shadow-md'>
-                  <Text className='text-xl font-bold'>00:00</Text>
+                  <Text className='text-xl font-bold'>00:{secondRemaining}</Text>
               </View>
              </View>
 
