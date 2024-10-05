@@ -24,7 +24,8 @@
         "INTERNET",
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE"
-      ]
+      ],
+      "package": "com.tchasinga.kanisa"
     },
     "web": {
       "bundler": "metro",
@@ -40,6 +41,9 @@
     "extra": {
       "router": {
         "origin": false
+      },
+      "eas": {
+        "projectId": "884a1f1b-a889-4578-a7c8-dae438aaed65"
       }
     }
   }
