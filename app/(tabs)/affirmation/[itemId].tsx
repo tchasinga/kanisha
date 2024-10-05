@@ -4,6 +4,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { GalleryPreviewData } from '@/constants/models/AffirmationColomer';
 import AFFIRMATION_GALLERY from '@/constants/affirmationgallery';
 import { AntDesign } from "@expo/vector-icons";
+import AppGradient from '@/components/Appgradient';
 
 const AffirmationIdIndex = () => {
     const { itemId } = useLocalSearchParams();
