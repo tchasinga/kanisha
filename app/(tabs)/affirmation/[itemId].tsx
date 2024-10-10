@@ -27,12 +27,12 @@ const AffirmationIdIndex = () => {
 
     return (
         <View className="flex-1">
-                <ImageBackground
-                    source={affirmation?.image}
-                    resizeMode="cover"
-                    className="flex-1"
-                >
-                    <AppGradient colors={["rgba(0,0,0, 0.4)", "rgba(0,0,0, 0.8)"]}>
+            <ImageBackground
+                source={affirmation?.image}
+                resizeMode="cover"
+                className="flex-1"
+            >
+                <AppGradient colors={["rgba(0,0,0, 0.4)", "rgba(0,0,0, 0.8)"]}>
 
                     <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', padding: 20 }}>
                         <Text className="text-white text-lg font-bold">
@@ -45,9 +45,8 @@ const AffirmationIdIndex = () => {
                     >
                         <AntDesign name="arrowleft" size={24} color="white" />
                     </Pressable>
-                    </AppGradient>
-                </ImageBackground>
-            
+                </AppGradient>
+            </ImageBackground>
         </View>
     );
 };
