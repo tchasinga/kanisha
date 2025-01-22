@@ -4,15 +4,6 @@ module.exports = function (api) {
     presets: ['babel-preset-expo'],
     plugins: [
       "nativewind/babel",
-      'react-native-reanimated/plugin',
     ],
   };
-};
-
-module.exports = {
-  presets: ['babel-preset-expo'],
-  plugins: [
-    // Add any required plugins here, for example:
-    
-  ],
 };
