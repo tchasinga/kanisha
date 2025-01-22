@@ -8,35 +8,32 @@ import AppGradient from '@/components/Appgradient';
 
 const AffirmationIdIndex = () => {
     const { itemId } = useLocalSearchParams();
-    const [affirmation, setAffirmation] = useState<GalleryPreviewData | null>(null);
+    const [affirmation, setAffirmation] = useState<GalleryPreviewData>();
 
     useEffect(() => {
-        if (itemId) {
-            const affirmationToStart = AFFIRMATION_GALLERY.flatMap((gallery) => gallery.data)
-                .find((a) => a.id === Number(itemId));
+        for (let idx = 0; idx < AFFIRMATION_GALLERY.length; idx++) {
+            const affirmationData = AFFIRMATION_GALLERY[idx].data;
+
+            const affirmationToStart = affirmationData.find(
+                (a) => a.id === Number(itemId)
+            );
 
             if (affirmationToStart) {
                 setAffirmation(affirmationToStart);
+                return;
             }
         }
     }, [itemId]);
 
-    if (!affirmation) {
-        return (
-            <View className="flex-1 justify-center items-center">
-                <Text className="text-white">Loading...</Text>
-            </View>
-        );
-    }
-
     return (
         <View className="flex-1">
             <ImageBackground
-                source={affirmation?.image || require('@/assets/defaultImage.png')}  // fallback image
+                source={affirmation?.image}
                 resizeMode="cover"
                 className="flex-1"
             >
                 <AppGradient colors={["rgba(0,0,0, 0.4)", "rgba(0,0,0, 0.8)"]}>
+
                     <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', padding: 20 }}>
                         <Text className="text-white text-lg font-bold">
                             {affirmation?.text}
