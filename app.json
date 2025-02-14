@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/xnYne2lojk1b.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.tchasinga.Thinker"
     },
     "web": {
       "bundler": "metro",
@@ -35,6 +36,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "e212e2c6-2a90-4cc2-9f06-b704e1af508d"
+      }
     }
   }
 }
