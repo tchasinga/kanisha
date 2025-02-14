@@ -21,7 +21,7 @@ const App = () => {
             <ImageBackground
                 source={beachImage}
                 resizeMode="cover"
-                className="flex-1"
+                className="flex-1 justify-center items-center"
             >
                 <AppGradient
                     // Background Linear Gradient
