@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "kanisha",
-    "slug": "kanisha",
+    "name": "Thinker",
+    "slug": "Thinker",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/play_store_512.png",
@@ -29,7 +29,6 @@
         "expo-splash-screen",
         {
           "image": "./assets/images/xnYne2lojk1b.png",
-          "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
