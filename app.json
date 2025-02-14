@@ -13,7 +13,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/xnYne2lojk1b.png",
+        "foregroundImage": "./assets/play_store_512.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.tchasinga.Thinker"
