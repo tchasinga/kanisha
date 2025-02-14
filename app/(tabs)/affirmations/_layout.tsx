@@ -10,7 +10,6 @@ const AffirmationsLayout = () => {
                     headerShown: false,
                 }}
             />
-
             <Stack.Screen
                 name="[itemId]"
                 options={{

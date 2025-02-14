@@ -1,14 +1,12 @@
-import { View, Text, Pressable } from 'react-native'
-import React, { useContext } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import AppGradient from '@/components/Appgradient';
-import { router } from 'expo-router';
-import { AntDesign } from '@expo/vector-icons';
-import CustomButtom from '@/components/CustomButtom';
-import { TimerContext } from '@/context/Timercontext';
+import AppGradient from "@/components/AppGradient";
+import CustomButton from "@/components/CustomButton";
+import { TimerContext } from "@/context/TimerContext";
+import { AntDesign } from "@expo/vector-icons";
+import { router } from "expo-router";
+import React, { useContext } from "react";
+import { Pressable, Text, View } from "react-native";
 
-const Adjustdurationmeditationduration = () => {
-
+const AdjustMeditationDuration = () => {
     const { setDuration } = useContext(TimerContext);
 
     const handlePress = (duration: number) => {
@@ -16,42 +14,42 @@ const Adjustdurationmeditationduration = () => {
         router.back();
     };
 
-  return (
-    <View className="flex-1 relative">
+    return (
+        <View className="flex-1 relative">
             <AppGradient
                 // Background Linear Gradient
                 colors={["#161b2e", "#0a4d4a", "#766e67"]}
             >
                 <Pressable
                     onPress={() => router.back()}
-                    className="absolute top-8 left-6 z-10 bg-white p-4 rounded-full"
+                    className="absolute top-8 left-6 z-10"
                 >
-                    <AntDesign name="back" size={24} color="black" />
+                    <AntDesign name="leftcircleo" size={50} color="white" />
                 </Pressable>
                 <View className="justify-center h-4/5">
                     <View>
-                        <Text className="text-center font-bold text-3xl text-white pt-[30%] pb-[10%]">
+                        <Text className="text-center font-bold text-3xl text-white mb-8">
                             Adjust your meditation duration
                         </Text>
                     </View>
 
                     <View>
-                        <CustomButtom
+                        <CustomButton
                             title="10 seconds"
                             onPress={() => handlePress(10)}
                             containerStyles="mb-5"
                         />
-                        <CustomButtom
+                        <CustomButton
                             title="5 minutes"
                             onPress={() => handlePress(5 * 60)}
                             containerStyles="mb-5"
                         />
-                        <CustomButtom
+                        <CustomButton
                             title="10 minutes"
                             onPress={() => handlePress(10 * 60)}
                             containerStyles="mb-5"
                         />
-                        <CustomButtom
+                        <CustomButton
                             title="15 minutes"
                             onPress={() => handlePress(15 * 60)}
                             containerStyles="mb-5"
@@ -60,7 +58,7 @@ const Adjustdurationmeditationduration = () => {
                 </View>
             </AppGradient>
         </View>
-  )
-}
+    );
+};
 
-export default Adjustdurationmeditationduration
+export default AdjustMeditationDuration;

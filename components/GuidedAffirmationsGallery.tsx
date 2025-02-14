@@ -1,6 +1,6 @@
 import { Image, View, Text, FlatList, Pressable } from "react-native";
-import images from "@/constants/affirmationforimages";
-import { GalleryPreviewData} from "@/constants/models/AffirmationColomer";
+import images from "@/constants/affirmation-images";
+import { GalleryPreviewData, Product } from "@/constants/models/Product";
 import { Link } from "expo-router";
 
 interface GuidedAffirmationsGalleryProps {
@@ -23,7 +23,7 @@ const GuidedAffirmationsGallery = ({
                     showsHorizontalScrollIndicator={false}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item, index }) => (
-                        <Link href={`/affirmation/${item.id}`} asChild>
+                        <Link href={`/affirmations/${item.id}`} asChild>
                             <Pressable>
                                 <View className="h-36 w-32 rounded-md mr-4">
                                     <Image

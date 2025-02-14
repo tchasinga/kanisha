@@ -1,37 +1,45 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { Tabs } from 'expo-router'
-import Color from '../../constants/Color';
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
+import Colors from "@/constants/Colors";
+import React from "react";
 
-const RoomerDesignerLayoutlayout = () => {
+export const unstable_settings = {
+    // Ensure that reloading on `/modal` keeps a back button present.
+    initialRouteName: "(tabs)",
+};
+
+const Page = () => {
     return (
         <Tabs
             screenOptions={{
                 headerShown: false,
-                tabBarActiveTintColor: Color.primary,
+                tabBarActiveTintColor: Colors.primary,
             }}
         >
-            <Tabs.Screen name="naturemeditate" options={{
-                tabBarLabel: "Meditate",
-                tabBarIcon: ({ color }) => (
-                    <FontAwesome5 name="book-reader" size={24} color={color} />
-                )
-            }} />
-
-            <Tabs.Screen name="affirmation" options={{
-                tabBarLabel: "Affirmation",
-                tabBarIcon: ({ color }) => (
-                    <MaterialIcons name="gpp-good" size={24} color={color} />
-                )
-            }} />
-
-            
-
+            <Tabs.Screen
+                name="nature-meditate"
+                options={{
+                    tabBarLabel: "Meditate",
+                    tabBarIcon: ({ color }) => (
+                        <MaterialCommunityIcons
+                            name="flower-tulip"
+                            size={24}
+                            color={color}
+                        />
+                    ),
+                }}
+            />
+            <Tabs.Screen
+                name="affirmations"
+                options={{
+                    tabBarLabel: "Affirmations",
+                    tabBarIcon: ({ color }) => (
+                        <Entypo name="open-book" size={24} color={color} />
+                    ),
+                }}
+            />
         </Tabs>
-    )
-}
+    );
+};
 
-export default RoomerDesignerLayoutlayout
+export default Page;

@@ -1,20 +1,20 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import {View, StyleSheet} from 'react-native';
+import { View, StyleSheet } from "react-native";
 import Content from "./Content";
 
-const AppGradiant = ({
+const AppGradient = ({
     children,
-    colors
-} : {
+    colors,
+}: {
     children: any;
-    colors : string[]
-}) =>{
+    colors: string[];
+}) => {
     return (
         <LinearGradient colors={colors} className="flex-1">
             <Content>{children}</Content>
         </LinearGradient>
-    )
-}
+    );
+};
 
-export default AppGradiant
+export default AppGradient;

@@ -1,35 +1,65 @@
-import { View, Text, ImageBackground } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
-import BImage from "@/assets/meditation-images/beach.webp";
-import { LinearGradient } from 'expo-linear-gradient';
-import CustomButtom from '@/components/CustomButtom';
-import { useRouter } from 'expo-router';
-import AppGradiant from '@/components/Appgradient';
+import { View, Text, Image, ImageBackground } from "react-native";
+import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
+import CustomButton from "@/components/CustomButton";
+import AppGradient from "@/components/AppGradient";
+import { useRouter } from "expo-router";
+import Animated, {
+    FadeInDown,
+    FadeInUp,
+    withSpring,
+} from "react-native-reanimated";
 
+import beachImage from "@/assets/meditation-images/beach.webp";
 
+const App = () => {
+    const router = useRouter();
 
-export default function HomeScreen() {
+    return (
+        <View className="flex-1">
+            <ImageBackground
+                source={beachImage}
+                resizeMode="cover"
+                className="flex-1"
+            >
+                <AppGradient
+                    // Background Linear Gradient
+                    colors={["rgba(0,0,0,0.4)", "rgba(0,0,0,0.8)"]}
+                >
+                    <SafeAreaView className="flex flex-1 px-1 justify-between">
+                        <Animated.View
+                            entering={FadeInDown.delay(300)
+                                .mass(0.5)
+                                .stiffness(80)
+                                .springify(20)}
+                        >
+                            <Text className="text-center text-white font-bold text-4xl">
+                                Simple Meditation
+                            </Text>
+                            <Text className="text-center text-white font-regular text-2xl mt-3">
+                                Simplifying Meditation for Everyone
+                            </Text>
+                        </Animated.View>
 
-  const router = useRouter();
+                        <Animated.View
+                            entering={FadeInDown.delay(300)
+                                .mass(0.5)
+                                .stiffness(80)
+                                .springify(20)}
+                        >
+                            <CustomButton
+                                onPress={() => router.push("/nature-meditate")}
+                                title="Get Started"
+                            />
+                        </Animated.View>
 
-  return (
-    <SafeAreaView className="flex-1">
-      <ImageBackground source={BImage} resizeMode="cover" className="flex-1">
-        <AppGradiant colors={["rgba(0,0,0, 0.4)", "rgba(0,0,0, 0.8)"]}>
-          <SafeAreaView className='flex-1 justify-between px-1'>
-            <View>
-              <Text className="text-white text-center font-bold text-3xl">Zua tango</Text>
-              <Text className='text-white text-center text-sm'>Relax & take note, more you read more you learn</Text>
-            </View>
+                        <StatusBar style="light" />
+                    </SafeAreaView>
+                </AppGradient>
+            </ImageBackground>
+        </View>
+    );
+};
 
-            <View className='my-12'>
-              <CustomButtom onPress={() => router.navigate("/naturemeditate")}  title='Get stared now'/>
-            </View>
-            <StatusBar style="dark" />
-          </SafeAreaView>
-        </AppGradiant>
-      </ImageBackground>
-    </SafeAreaView>
-  );
-}
+export default App;

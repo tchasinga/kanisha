@@ -1,115 +1,138 @@
-import { View, Text, ImageBackground, Pressable } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import React, { useContext, useEffect } from 'react';
-import meditationImage from '@/constants/fileformeditation';
-import AppGradiant from '@/components/Appgradient';
-import { router, useLocalSearchParams } from 'expo-router';
-import { AntDesign } from '@expo/vector-icons';
-import CustomButtom from '@/components/CustomButtom';
-import { Audio } from 'expo-av';
-import { MEDITATION_DATA, AUDIO_FILES } from '@/constants/meditationData';
-import { TimerContext } from '@/context/Timercontext';
+import AppGradient from "@/components/AppGradient";
+import { router, useLocalSearchParams } from "expo-router";
+import React, { useContext, useEffect, useState } from "react";
+import { ImageBackground, Pressable, Text, View } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
+import { Audio } from "expo-av";
+import CustomButton from "@/components/CustomButton";
 
-const Meditate = () => {
-  const { id } = useLocalSearchParams();
-  const {duration:secondRemaining, setDuration} = useContext(TimerContext) 
-  // const [secondRemaining, setSecondRemaining] = React.useState(10);
-  const [isPlaying, setIsPlaying] = React.useState(false);
-  const [audioSound, setAudioSound] = React.useState<Audio.Sound | null>(null);
-  const [isPlayingSound, setIsPlayingSound] = React.useState(false);
+import MEDITATION_IMAGES from "@/constants/meditation-images";
+import { TimerContext } from "@/context/TimerContext";
+import { MEDITATION_DATA, AUDIO_FILES } from "@/constants/MeditationData";
 
-  useEffect(() => {
-    let timerId: ReturnType<typeof setTimeout>;
+const Page = () => {
+    const { id } = useLocalSearchParams();
 
-    if (secondRemaining === 0) {
-      setIsPlaying(false);
-      return;
-    }
+    const { duration: secondsRemaining, setDuration } =
+        useContext(TimerContext);
 
-    if (isPlaying) {
-      timerId = setTimeout(() => {
-        setDuration(secondRemaining - 1);
-      }, 1000);
-    }
+    const [isMeditating, setMeditating] = useState(false);
+    const [audioSound, setSound] = useState<Audio.Sound>();
+    const [isPlayingAudio, setPlayingAudio] = useState(false);
 
-    return () => {
-      clearTimeout(timerId);
+    useEffect(() => {
+        let timerId: NodeJS.Timeout;
+
+        // Exit early when we reach 0
+        if (secondsRemaining === 0) {
+            if (isPlayingAudio) audioSound?.pauseAsync();
+            setMeditating(false);
+            setPlayingAudio(false);
+            return;
+        }
+
+        if (isMeditating) {
+            // Save the interval ID to clear it when the component unmounts
+            timerId = setTimeout(() => {
+                setDuration(secondsRemaining - 1);
+            }, 1000);
+        }
+
+        // Clear timeout if the component is unmounted or the time left changes
+        return () => {
+            clearTimeout(timerId);
+        };
+    }, [secondsRemaining, isMeditating]);
+
+    useEffect(() => {
+        return () => {
+            setDuration(10);
+            audioSound?.unloadAsync();
+        };
+    }, [audioSound]);
+
+    const initializeSound = async () => {
+        const audioFileName = MEDITATION_DATA[Number(id) - 1].audio;
+
+        const { sound } = await Audio.Sound.createAsync(
+            AUDIO_FILES[audioFileName]
+        );
+        setSound(sound);
+        return sound;
     };
-  }, [secondRemaining, isPlaying]);
 
-  useEffect(() => {
-    return () => {
-      audioSound?.unloadAsync();
+    const togglePlayPause = async () => {
+        const sound = audioSound ? audioSound : await initializeSound();
+
+        const status = await sound?.getStatusAsync();
+
+        if (status?.isLoaded && !isPlayingAudio) {
+            await sound?.playAsync();
+            setPlayingAudio(true);
+        } else {
+            await sound?.pauseAsync();
+            setPlayingAudio(false);
+        }
     };
-  }, [audioSound]);
 
-  const toggleMeditationSessionStatus = async () => {
-    if (secondRemaining === 0) setDuration(10);
-    setIsPlaying(!isPlaying);
-    await togglePlaySound();
-  };
+    async function toggleMeditationSessionStatus() {
+        if (secondsRemaining === 0) setDuration(10);
 
-  const togglePlaySound = async () => {
-    if (!audioSound) {
-      const sound = await initializeSound();
-      setAudioSound(sound);
-      await sound.playAsync();
-      setIsPlayingSound(true);
-    } else {
-      const status = await audioSound.getStatusAsync();
+        setMeditating(!isMeditating);
 
-      if (status.isLoaded && !isPlayingSound) {
-        await audioSound.playAsync();
-        setIsPlayingSound(true);
-      } else {
-        await audioSound.pauseAsync();
-        setIsPlayingSound(false);
-      }
+        await togglePlayPause();
     }
-  };
 
-  const initializeSound = async () => {
-    const audioFileName = MEDITATION_DATA[Number(id) - 1].audio;
-    const { sound } = await Audio.Sound.createAsync(AUDIO_FILES[audioFileName]);
-    return sound;
-  };
+    const handleAdjustDuration = () => {
+        if (isMeditating) toggleMeditationSessionStatus();
 
-  const handlerAdjustDuration = () => {
-    if(isPlaying) toggleMeditationSessionStatus()
-      router.push("/(modal)/adjustdurationmeditationduration")
-  }
+        router.push("/(modal)/adjust-meditation-duration");
+    };
 
-  const formattedTimeMinutes = String(Math.floor(secondRemaining / 60)).padStart(2, '0');
-  const formattedTimeSeconds = String(secondRemaining % 60).padStart(2, '0');
+    // Format the timeLeft to ensure two digits are displayed
+    const formattedTimeMinutes = String(
+        Math.floor(secondsRemaining / 60)
+    ).padStart(2, "0");
+    const formattedTimeSeconds = String(secondsRemaining % 60).padStart(2, "0");
 
-  return (
-    <SafeAreaView className="flex-1">
-      <ImageBackground source={meditationImage[Number(id) - 1]} className="flex-1" resizeMode="cover">
-        <AppGradiant colors={['rgba(0,0,0, 0.4)', 'rgba(0,0,0, 0.8)']}>
-          <Text className="text-white text-2xl text-center">Meditate</Text>
-          <Pressable
-            onPress={() => router.back()}
-            className="absolute top-16 left-6 z-10 bg-white rounded-full p-2 shadow-md"
-          >
-            <AntDesign name="back" size={24} color="black" />
-          </Pressable>
+    return (
+        <View className="flex-1">
+            <ImageBackground
+                source={MEDITATION_IMAGES[Number(id) - 1]}
+                resizeMode="cover"
+                className="flex-1"
+            >
+                <AppGradient colors={["transparent", "rgba(0,0,0,0.8)"]}>
+                    <Pressable
+                        onPress={() => router.back()}
+                        className="absolute top-16 left-6 z-10"
+                    >
+                        <AntDesign name="leftcircleo" size={50} color="white" />
+                    </Pressable>
 
-          <View className="flex-1 justify-center">
-            <View className="mx-auto bg-neutral-200 rounded-full justify-center items-center w-44 h-44 shadow-md">
-              <Text className="text-xl font-bold">
-                {formattedTimeMinutes}:{formattedTimeSeconds}
-              </Text>
-            </View>
-          </View>
+                    <View className="flex-1 justify-center">
+                        <View className="mx-auto bg-neutral-200 rounded-full w-44 h-44 justify-center items-center">
+                            <Text className="text-4xl text-blue-800 font-rmono">
+                                {formattedTimeMinutes}.{formattedTimeSeconds}
+                            </Text>
+                        </View>
+                    </View>
 
-          <View className="mb-4 gap-4">
-            <CustomButtom title={isPlaying ? 'Pause Meditation' : 'Start Meditation'} onPress={toggleMeditationSessionStatus} />
-            <CustomButtom title={'fix timer'} containerStyles='my-4' onPress={handlerAdjustDuration} />
-          </View>
-        </AppGradiant>
-      </ImageBackground>
-    </SafeAreaView>
-  );
+                    <View className="mb-5">
+                        <CustomButton
+                            title="Adjust duration"
+                            onPress={handleAdjustDuration}
+                        />
+                        <CustomButton
+                            title={isMeditating ? "Stop" : "Start Meditation"}
+                            onPress={toggleMeditationSessionStatus}
+                            containerStyles="mt-4"
+                        />
+                    </View>
+                </AppGradient>
+            </ImageBackground>
+        </View>
+    );
 };
 
-export default Meditate;
+export default Page;

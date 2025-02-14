@@ -33,9 +33,7 @@ import tuscannyTwo from "@/assets/affirmation-images/Tuscanny-2.webp";
 import tuscannyThree from "@/assets/affirmation-images/Tuscanny-3.webp";
 import tuscannyFour from "@/assets/affirmation-images/Tuscanny-4.webp";
 
-
-
-export  default {
+export default {
     californiaBackyardOne,
     californiaBackyardTwo,
     californiaBackyardThree,
