@@ -28,7 +28,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/xnYne2lojk1b.png",
+          "image": "./assets/images/simpleMeditationLogo.png",
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
