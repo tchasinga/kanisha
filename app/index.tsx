@@ -54,12 +54,11 @@ const App = () => {
                             />
                         </Animated.View>
 
-                        <StatusBar style="light" />
+                        <StatusBar style="auto" />
                     </SafeAreaView>
                 </AppGradient>
             </ImageBackground>
         </View>
     );
 };
-
 export default App;
